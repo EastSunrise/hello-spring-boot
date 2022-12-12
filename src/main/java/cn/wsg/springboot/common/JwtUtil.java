@@ -34,6 +34,9 @@ public class JwtUtil {
         return new LoginUser(userId, admin);
     }
 
+    /**
+     * todo user with field 'role'
+     */
     public static void main(String[] args) {
         SysUser user = SysUser.builder().userId(12).build();
         String token = createToken(user, true);
