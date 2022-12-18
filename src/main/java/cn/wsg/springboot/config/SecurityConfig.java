@@ -1,6 +1,6 @@
-package cn.wsg.springboot.security;
+package cn.wsg.springboot.config;
 
-import cn.wsg.springboot.pojo.UserScope;
+import cn.wsg.springboot.pojo.enums.UserScope;
 import javax.annotation.Resource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,6 +14,11 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+/**
+ * Configurations for security.
+ *
+ * @author Kingen
+ */
 @Configuration
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig {

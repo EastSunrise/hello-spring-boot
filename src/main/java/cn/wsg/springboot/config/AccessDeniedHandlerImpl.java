@@ -1,4 +1,4 @@
-package cn.wsg.springboot.security;
+package cn.wsg.springboot.config;
 
 import java.io.IOException;
 import javax.servlet.http.HttpServletRequest;
@@ -8,6 +8,11 @@ import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.stereotype.Component;
 
+/**
+ * Handles {@link AccessDeniedException}s.
+ *
+ * @author Kingen
+ */
 @Component("accessDeniedHandler")
 public class AccessDeniedHandlerImpl implements AccessDeniedHandler {
 

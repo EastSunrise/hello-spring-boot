@@ -1,7 +1,7 @@
-package cn.wsg.springboot.security;
+package cn.wsg.springboot.config;
 
 import cn.wsg.springboot.common.JwtUtil;
-import cn.wsg.springboot.pojo.LoggedUser;
+import cn.wsg.springboot.pojo.dto.LoggedUserDTO;
 import java.io.IOException;
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
@@ -14,6 +14,11 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
+/**
+ * Filter to authenticate the JSON Web Token.
+ *
+ * @author Kingen
+ */
 @Component
 public class JwtTokenFilter extends OncePerRequestFilter {
 
@@ -25,7 +30,7 @@ public class JwtTokenFilter extends OncePerRequestFilter {
             filterChain.doFilter(request, response);
             return;
         }
-        LoggedUser user = JwtUtil.parseToken(token);
+        LoggedUserDTO user = JwtUtil.parseToken(token);
         if (user == null) {
             filterChain.doFilter(request, response);
             return;

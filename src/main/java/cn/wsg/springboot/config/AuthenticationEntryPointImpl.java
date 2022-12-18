@@ -1,4 +1,4 @@
-package cn.wsg.springboot.security;
+package cn.wsg.springboot.config;
 
 import java.io.IOException;
 import javax.servlet.http.HttpServletRequest;
@@ -8,6 +8,11 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.stereotype.Component;
 
+/**
+ * Handles {@link AuthenticationException}s.
+ *
+ * @author Kingen
+ */
 @Component("authenticationEntryPoint")
 public class AuthenticationEntryPointImpl implements AuthenticationEntryPoint {
 
