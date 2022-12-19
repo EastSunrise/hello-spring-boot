@@ -2,6 +2,8 @@ package cn.wsg.springboot.common;
 
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
@@ -11,6 +13,8 @@ import org.springframework.data.domain.Sort.Direction;
  *
  * @author Kingen
  */
+@Setter
+@ToString
 @NoArgsConstructor
 @AllArgsConstructor
 public class Pagination implements Pageable {
@@ -18,7 +22,7 @@ public class Pagination implements Pageable {
     private static final Sort DEFAULT_SORT = Sort.by(Direction.DESC, "gmtModified");
     private static final int DEFAULT_PAGE_SIZE = 20;
 
-    private int pageNumber;
+    private int pageNumber = 0;
     private int pageSize = DEFAULT_PAGE_SIZE;
 
     @Override
