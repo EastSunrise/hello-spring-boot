@@ -7,6 +7,7 @@ import cn.wsg.springboot.mapper.UserRepository;
 import cn.wsg.springboot.pojo.dto.QueryRecordDTO;
 import cn.wsg.springboot.pojo.dto.SaveRecordDTO;
 import cn.wsg.springboot.pojo.entity.UserEntity;
+import cn.wsg.springboot.pojo.entity.UserEntity_;
 import cn.wsg.springboot.pojo.entity.UserRecordEntity;
 import cn.wsg.springboot.pojo.entity.UserRecordEntity_;
 import java.time.LocalDateTime;
@@ -14,6 +15,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import javax.annotation.Resource;
+import javax.persistence.criteria.Join;
+import javax.persistence.criteria.JoinType;
 import javax.persistence.criteria.Predicate;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -54,8 +57,9 @@ public class UserRecordService {
     public ResponseEntity<PageResult<UserRecordEntity>> listRecords(QueryRecordDTO cond, Pagination pagination) {
         Specification<UserRecordEntity> spec = (root, query, builder) -> {
             List<Predicate> predicates = new ArrayList<>();
-            if (cond.getUserId() != null) {
-                predicates.add(builder.equal(root.get(UserRecordEntity_.userId), cond.getUserId()));
+            Join<UserRecordEntity, UserEntity> join = root.join(UserRecordEntity_.user, JoinType.LEFT);
+            if (StringUtils.isNotBlank(cond.getUsername())) {
+                predicates.add(builder.like(join.get(UserEntity_.username), "%" + cond.getUsername() + "%"));
             }
             if (StringUtils.isNotBlank(cond.getRecordName())) {
                 predicates.add(builder.like(root.get(UserRecordEntity_.recordName), "%" + cond.getRecordName() + "%"));

@@ -16,7 +16,7 @@ import lombok.ToString;
 @ToString
 public class QueryRecordDTO {
 
-    private Integer userId;
+    private String username;
     private String recordName;
     private RecordType recordType;
     private YearMonth month;
